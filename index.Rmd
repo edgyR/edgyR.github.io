@@ -1,30 +1,70 @@
 --- 
-title: "A Minimal Book Example"
-author: "Yihui Xie"
+title: "edgyR: NVIDIAⓇ Jetson™ tools for R developers"
+author: "M. Edward (Ed) Borasky"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+description: "This book describes the `edgyR` project, a suite of tools for developing R packages for qNVIDIA Jetson edge computing devices."
 ---
+# Overview
 
-# Prerequisites
+> "And though she be but little, she is fierce."
+> -- Shakespeare, on receiving an NVIDIA Jetson Nano for his birthday
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+The goal of the `edgyR` project is to give R (and Julia!) users access to
+[NVIDIA Jetson development kits](https://developer.nvidia.com/embedded/develop/hardware).
+Although the target market of the Jetson platform is autonomous vehicles, and
+the focus of the NVIDIA software is image and video processing, the hardware and
+software are general enough for a wide variety of scientific computing
+applications.
 
-The **bookdown** package can be installed from CRAN or Github:
+The initial release is aimed at R package developers. I'm assuming a knowledge
+of R, RStudio, Git, and R Markdown. The release contains everything an R
+package developer should need to develop packages that interface with the
+unique hardware of the Jetson platform. It also contains a JupyterLab
+server Python users more familiar with that environment.
 
-```{r eval=FALSE}
-install.packages("bookdown")
-# or the development version
-# devtools::install_github("rstudio/bookdown")
-```
+The Jetson hardware consists of a multi-core `arm64` CPU and a CUDA-compatible
+GPU. The smallest of the family, the Jetson Nano, has four CPU cores, 4 GB of
+RAM, and an NVIDIA Maxwell GPU with 128 CUDA cores. The peak speed is 472 billion floating
+point operations per second (GFLOPS).
 
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
+The largest, the Jetson AGX Xavier, has eight CPU cores, 32 GB of RAM, and a
+Volta GPU with 64 tensor cores and 512 CUDA cores. The peak speed of the AGX Xavier
+is 32 trillion operations per second. 
 
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
+The Jetson software is called
+[JetPack](https://developer.nvidia.com/embedded/jetpack).
+JetPack includes
+
+* [Linux for Tegra (L4T)](https://developer.nvidia.com/embedded/linux-tegra),
+a full Ubuntu 18.04 LTS "Bionic Beaver" desktop,
+* NVIDIA drivers,
+* compilers, linkers and libraries to access the onboard GPU in C/C++ and
+Python, and
+* a complete NVIDIA Docker runtime.
+
+`edgyR` adds R 4.0.3 and RStudio Server 1.4.1103 to JetPack, compiled for `arm64`
+from upstream source and packaged on a Docker image,
+[`edgyr`](https://hub.docker.com/r/edgyr/edgyr).
+The image is based on
+[NVIDIA L4T Base](https://ngc.nvidia.com/catalog/containers/nvidia:l4t-base).
+
+## How is it pronounced?
+
+There are (at least) five options:
+
+1. ED-grrr
+2. ED-gyre
+3. EDGE-er
+4. Edgier
+5. Edgy R
+
+It is ***not*** pronounced like any brand of peanut butter. Otherwise, it's
+your choice!
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
