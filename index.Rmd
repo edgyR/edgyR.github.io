@@ -4,7 +4,7 @@ author: "M. Edward (Ed) Borasky"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: [book.bib, packages.bib]
+bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
 description: "This book describes the `edgyR` project, a suite of tools for developing R packages for qNVIDIA Jetson edge computing devices."
@@ -65,10 +65,3 @@ There are (at least) five options:
 
 It is ***not*** pronounced like any brand of peanut butter. Otherwise, it's
 your choice!
-
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
