@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>edgyR: NVIDIAⓇ Jetson™ tools for R developers</title>
-  <meta name="description" content="This book describes the edgyR project, a suite of tools for developing R packages for qNVIDIA Jetson edge computing devices." />
+  <meta name="description" content="This book describes the edgyR project, a suite of tools for developing R packages for NVIDIA Jetson edge computing devices." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="edgyR: NVIDIAⓇ Jetson™ tools for R developers" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This book describes the edgyR project, a suite of tools for developing R packages for qNVIDIA Jetson edge computing devices." />
+  <meta property="og:description" content="This book describes the edgyR project, a suite of tools for developing R packages for NVIDIA Jetson edge computing devices." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="edgyR: NVIDIAⓇ Jetson™ tools for R developers" />
   
-  <meta name="twitter:description" content="This book describes the edgyR project, a suite of tools for developing R packages for qNVIDIA Jetson edge computing devices." />
+  <meta name="twitter:description" content="This book describes the edgyR project, a suite of tools for developing R packages for NVIDIA Jetson edge computing devices." />
   
 
 <meta name="author" content="M. Edward (Ed) Borasky" />
 
 
-<meta name="date" content="2021-01-28" />
+<meta name="date" content="2021-01-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -70,9 +70,11 @@
 <li><a href="./">edgyR: NVIDIAⓇ Jetson™ tools for R developers</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-is-it-pronounced"><i class="fa fa-check"></i><b>1.1</b> How is it pronounced?</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview"><i class="fa fa-check"></i><b>1.1</b> Overview</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#licensing"><i class="fa fa-check"></i><b>1.2</b> Licensing</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#how-is-it-pronounced"><i class="fa fa-check"></i><b>1.3</b> How is it pronounced?</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="setting-up-the-jetson-nano.html"><a href="setting-up-the-jetson-nano.html"><i class="fa fa-check"></i><b>2</b> Setting up the Jetson Nano</a>
 <ul>
@@ -160,15 +162,17 @@
 <div id="header">
 <h1 class="title">edgyR: NVIDIAⓇ Jetson™ tools for R developers</h1>
 <p class="author"><em>M. Edward (Ed) Borasky</em></p>
-<p class="date"><em>2021-01-28</em></p>
+<p class="date"><em>2021-01-29</em></p>
 </div>
-<div id="overview" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Overview</h1>
+<div id="introduction" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<div id="overview" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Overview</h2>
 <blockquote>
 <p>“And though she be but little, she is fierce.”
 – Shakespeare, on receiving an NVIDIA Jetson Nano for his birthday</p>
 </blockquote>
-<p>The goal of the <code>edgyR</code> project is to give R (and Julia!) users access to
+<p>The goal of the <code>edgyR</code> project is to give R deveopers access to
 <a href="https://developer.nvidia.com/embedded/develop/hardware">NVIDIA Jetson development kits</a>.
 Although the target market of the Jetson platform is autonomous vehicles, and
 the focus of the NVIDIA software is image and video processing, the hardware and
@@ -178,11 +182,12 @@ applications.</p>
 of R, RStudio, Git, and R Markdown. The release contains everything an R
 package developer should need to develop packages that interface with the
 unique hardware of the Jetson platform. It also contains a JupyterLab
-server Python users more familiar with that environment.</p>
+server and Python data science stack, for Python users more familiar with that
+environment.</p>
 <p>The Jetson hardware consists of a multi-core <code>arm64</code> CPU and a CUDA-compatible
-GPU. The smallest of the family, the Jetson Nano, has four CPU cores, 4 GB of
-RAM, and an NVIDIA Maxwell GPU with 128 CUDA cores. The peak speed is 472 billion floating
-point operations per second (GFLOPS).</p>
+GPU. The smallest of the family, the 2 GB Jetson Nano, has four CPU cores, 2 GB
+of RAM, and an NVIDIA Maxwell GPU with 128 CUDA cores. The peak speed is 472
+billion floating point operations per second (GFLOPS).</p>
 <p>The largest, the Jetson AGX Xavier, has eight CPU cores, 32 GB of RAM, and a
 Volta GPU with 64 tensor cores and 512 CUDA cores. The peak speed of the AGX Xavier
 is 32 trillion operations per second.</p>
@@ -197,13 +202,46 @@ a full Ubuntu 18.04 LTS “Bionic Beaver” desktop,</li>
 Python, and</li>
 <li>a complete NVIDIA Docker runtime.</li>
 </ul>
-<p><code>edgyR</code> adds R 4.0.3 and RStudio Server 1.4.1103 to JetPack, compiled for <code>arm64</code>
-from upstream source and packaged on a Docker image,
-<a href="https://hub.docker.com/r/edgyr/edgyr"><code>edgyr</code></a>.
-The image is based on
+<p><code>edgyR</code> adds</p>
+<ul>
+<li>R 4.0.3 compiled from upstream source,</li>
+<li>RStudio Server 1.4.1103 compiled from upstream source,</li>
+<li>R package development tools:
+<ul>
+<li><a href="https://devtools.r-lib.org/"><code>devtools</code></a>,</li>
+<li><a href="https://www.tidyverse.org/"><code>tidyverse</code></a>,</li>
+<li><a href="https://rmarkdown.rstudio.com/"><code>rmarkdown</code></a>,
+<a href="https://bookdown.org/"><code>bookdown</code></a> and
+<a href="https://pkgdown.r-lib.org/"><code>pkgdown</code></a>,</li>
+<li><a href="https://shiny.rstudio.com/"><code>shiny</code></a>,</li>
+<li><a href="https://rstudio.github.io/reticulate/"><code>reticulate</code></a> Python interface,</li>
+<li><a href="https://db.rstudio.com/getting-started/connect-to-database"><code>odbc</code></a>
+database connectivity.</li>
+</ul></li>
+<li>the <a href="https://github.com/conda-forge/miniforge">Miniforge</a>
+<a href="https://conda-forge.org/">conda-forge</a> distribution,</li>
+<li>an optimized Python data science stack:
+<ul>
+<li><a href="https://jupyterlab.readthedocs.io/en/stable/">JupyterLab</a></li>
+<li>the <a href="https://cupy.dev/"><code>cupy</code></a> CUDA-optimized version of <code>numpy</code>,</li>
+<li>the <a href="https://github.com/rapidsai/cusignal"><code>cuSignal</code></a> CUDA-optimized
+digital signal processing library.</li>
+</ul></li>
+</ul>
+<p><code>edgyR</code> is distributed via Docker image at
+<a href="https://hub.docker.com/r/edgyr/edgyr"><code>edgyr</code></a>. The image is based on
 <a href="https://ngc.nvidia.com/catalog/containers/nvidia:l4t-base">NVIDIA L4T Base</a>.</p>
-<div id="how-is-it-pronounced" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> How is it pronounced?</h2>
+</div>
+<div id="licensing" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Licensing</h2>
+<p>Like RStudio Server, <code>edgyR</code> is licensed via the
+<a href="https://www.gnu.org/licenses/agpl-3.0.en.html">GNU Affero General Public License</a>.
+The source resides on GitHub at <a href="https://github.com/edgyR/edgyR-containers" class="uri">https://github.com/edgyR/edgyR-containers</a>. The
+book you’re reading is also open source and resides at
+<a href="https://github.com/edgyR/edgyR.github.io" class="uri">https://github.com/edgyR/edgyR.github.io</a>.</p>
+</div>
+<div id="how-is-it-pronounced" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> How is it pronounced?</h2>
 <p>There are (at least) five options:</p>
 <ol style="list-style-type: decimal">
 <li>ED-grrr</li>

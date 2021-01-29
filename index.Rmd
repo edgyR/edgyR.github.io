@@ -7,14 +7,17 @@ documentclass: book
 bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
-description: "This book describes the `edgyR` project, a suite of tools for developing R packages for qNVIDIA Jetson edge computing devices."
+description: "This book describes the `edgyR` project, a suite of tools for developing R packages for NVIDIA Jetson edge computing devices."
 ---
-# Overview
+
+# Introduction
+
+## Overview
 
 > "And though she be but little, she is fierce."
 > -- Shakespeare, on receiving an NVIDIA Jetson Nano for his birthday
 
-The goal of the `edgyR` project is to give R (and Julia!) users access to
+The goal of the `edgyR` project is to give R deveopers access to
 [NVIDIA Jetson development kits](https://developer.nvidia.com/embedded/develop/hardware).
 Although the target market of the Jetson platform is autonomous vehicles, and
 the focus of the NVIDIA software is image and video processing, the hardware and
@@ -25,12 +28,13 @@ The initial release is aimed at R package developers. I'm assuming a knowledge
 of R, RStudio, Git, and R Markdown. The release contains everything an R
 package developer should need to develop packages that interface with the
 unique hardware of the Jetson platform. It also contains a JupyterLab
-server Python users more familiar with that environment.
+server and Python data science stack, for Python users more familiar with that
+environment.
 
 The Jetson hardware consists of a multi-core `arm64` CPU and a CUDA-compatible
-GPU. The smallest of the family, the Jetson Nano, has four CPU cores, 4 GB of
-RAM, and an NVIDIA Maxwell GPU with 128 CUDA cores. The peak speed is 472 billion floating
-point operations per second (GFLOPS).
+GPU. The smallest of the family, the 2 GB Jetson Nano, has four CPU cores, 2 GB
+of RAM, and an NVIDIA Maxwell GPU with 128 CUDA cores. The peak speed is 472
+billion floating point operations per second (GFLOPS).
 
 The largest, the Jetson AGX Xavier, has eight CPU cores, 32 GB of RAM, and a
 Volta GPU with 64 tensor cores and 512 CUDA cores. The peak speed of the AGX Xavier
@@ -47,11 +51,38 @@ a full Ubuntu 18.04 LTS "Bionic Beaver" desktop,
 Python, and
 * a complete NVIDIA Docker runtime.
 
-`edgyR` adds R 4.0.3 and RStudio Server 1.4.1103 to JetPack, compiled for `arm64`
-from upstream source and packaged on a Docker image,
-[`edgyr`](https://hub.docker.com/r/edgyr/edgyr).
-The image is based on
+`edgyR` adds
+
+* R 4.0.3 compiled from upstream source,
+* RStudio Server 1.4.1103 compiled from upstream source,
+* R package development tools:
+    - [`devtools`](https://devtools.r-lib.org/),
+    - [`tidyverse`](https://www.tidyverse.org/),
+    - [`rmarkdown`](https://rmarkdown.rstudio.com/), 
+    [`bookdown`](https://bookdown.org/) and
+    [`pkgdown`](https://pkgdown.r-lib.org/),
+    - [`shiny`](https://shiny.rstudio.com/),
+    - [`reticulate`](https://rstudio.github.io/reticulate/) Python interface,
+    - [`odbc`](https://db.rstudio.com/getting-started/connect-to-database)
+    database connectivity.
+* the [Miniforge](https://github.com/conda-forge/miniforge)
+[conda-forge](https://conda-forge.org/) distribution,
+* an optimized Python data science stack:
+    - [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/)
+    - the [`cupy`](https://cupy.dev/) CUDA-optimized version of `numpy`,
+    - the [`cuSignal`](https://github.com/rapidsai/cusignal) CUDA-optimized
+    digital signal processing library.
+
+`edgyR` is distributed via Docker image at
+[`edgyr`](https://hub.docker.com/r/edgyr/edgyr). The image is based on
 [NVIDIA L4T Base](https://ngc.nvidia.com/catalog/containers/nvidia:l4t-base).
+
+## Licensing
+Like RStudio Server, `edgyR` is licensed via the
+[GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.en.html).
+The source resides on GitHub at <https://github.com/edgyR/edgyR-containers>. The
+book you're reading is also open source and resides at
+<https://github.com/edgyR/edgyR.github.io>.
 
 ## How is it pronounced?
 
