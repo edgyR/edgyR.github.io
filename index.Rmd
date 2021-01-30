@@ -1,5 +1,5 @@
---- 
-title: "edgyR: NVIDIAⓇ Jetson™ tools for R developers"
+---
+title: "edgyR: NVIDIAⓇ Jetson™ Tools for R Developers"
 author: "M. Edward (Ed) Borasky"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -14,85 +14,88 @@ description: "This book describes the `edgyR` project, a suite of tools for deve
 
 ## Overview
 
-> "And though she be but little, she is fierce."
-> -- Shakespeare, on receiving an NVIDIA Jetson Nano for his birthday
+> "And though she be but little, she is fierce." -- Shakespeare, on receiving an NVIDIA Jetson Nano for his birthday
 
-The goal of the `edgyR` project is to give R deveopers access to
-[NVIDIA Jetson development kits](https://developer.nvidia.com/embedded/develop/hardware).
-Although the target market of the Jetson platform is autonomous vehicles, and
-the focus of the NVIDIA software is image and video processing, the hardware and
-software are general enough for a wide variety of scientific computing
-applications.
+The goal of the `edgyR` project is to give R deveopers access to [NVIDIA Jetson development kits](https://developer.nvidia.com/embedded/develop/hardware). Although the target market of the Jetson platform is autonomous vehicles, and the focus of the NVIDIA software is image and video processing, the hardware and software are general enough for a wide variety of scientific computing applications.
 
-The initial release is aimed at R package developers. I'm assuming a knowledge
-of R, RStudio, Git, and R Markdown. The release contains everything an R
-package developer should need to develop packages that interface with the
-unique hardware of the Jetson platform. It also contains a JupyterLab
-server and Python data science stack, for Python users more familiar with that
-environment.
+The initial release is aimed at R package developers. I'm assuming a knowledge of R, RStudio, Git, and R Markdown. The release contains everything an R package developer should need to develop packages that interface with the unique hardware of the Jetson platform. It also contains a JupyterLab server and Python data science stack, for Python users more familiar with that environment.
 
-The Jetson hardware consists of a multi-core `arm64` CPU and a CUDA-compatible
-GPU. The smallest of the family, the 2 GB Jetson Nano, has four CPU cores, 2 GB
-of RAM, and an NVIDIA Maxwell GPU with 128 CUDA cores. The peak speed is 472
-billion floating point operations per second (GFLOPS).
+The Jetson hardware consists of a multi-core `arm64` CPU and a CUDA-compatible GPU. The smallest of the family, the 2 GB Jetson Nano, has four CPU cores, 2 GB of RAM, and an NVIDIA Maxwell GPU with 128 CUDA cores. The peak speed is 472 billion floating point operations per second (GFLOPS).
 
-The largest, the Jetson AGX Xavier, has eight CPU cores, 32 GB of RAM, and a
-Volta GPU with 64 tensor cores and 512 CUDA cores. The peak speed of the AGX Xavier
-is 32 trillion operations per second. 
+The largest, the Jetson AGX Xavier, has eight CPU cores, 32 GB of RAM, and a Volta GPU with 64 tensor cores and 512 CUDA cores. The peak speed of the AGX Xavier is 32 trillion operations per second.
 
-The Jetson software is called
-[JetPack](https://developer.nvidia.com/embedded/jetpack).
-JetPack includes
+The Jetson software is called [JetPack](https://developer.nvidia.com/embedded/jetpack). JetPack includes
 
-* [Linux for Tegra (L4T)](https://developer.nvidia.com/embedded/linux-tegra),
-a full Ubuntu 18.04 LTS "Bionic Beaver" desktop,
-* NVIDIA drivers,
-* compilers, linkers and libraries to access the onboard GPU in C/C++ and
-Python, and
-* a complete NVIDIA Docker runtime.
+-   [Linux for Tegra (L4T)](https://developer.nvidia.com/embedded/linux-tegra), a full Ubuntu 18.04 LTS "Bionic Beaver" desktop,
+-   NVIDIA drivers,
+-   compilers, linkers and libraries to access the onboard GPU in C/C++ and Python, and
+-   a complete NVIDIA Docker runtime.
 
 `edgyR` adds
 
-* R 4.0.3 compiled from upstream source,
-* RStudio Server 1.4.1103 compiled from upstream source,
-* R package development tools:
-    - [`devtools`](https://devtools.r-lib.org/),
-    - [`tidyverse`](https://www.tidyverse.org/),
-    - [`rmarkdown`](https://rmarkdown.rstudio.com/), 
-    [`bookdown`](https://bookdown.org/) and
-    [`pkgdown`](https://pkgdown.r-lib.org/),
-    - [`shiny`](https://shiny.rstudio.com/),
-    - [`reticulate`](https://rstudio.github.io/reticulate/) Python interface,
-    - [`odbc`](https://db.rstudio.com/getting-started/connect-to-database)
-    database connectivity.
-* the [Miniforge](https://github.com/conda-forge/miniforge)
-[conda-forge](https://conda-forge.org/) distribution,
-* an optimized Python data science stack:
-    - [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/)
-    - the [`cupy`](https://cupy.dev/) CUDA-optimized version of `numpy`,
-    - the [`cuSignal`](https://github.com/rapidsai/cusignal) CUDA-optimized
-    digital signal processing library.
+-   An administrative user account `edgyr` with Linux `sudo` privileges. This account requires a password to log into RStudio Server, but can execute commands with `sudo` without re-entering the password.
 
-`edgyR` is distributed via Docker image at
-[`edgyr`](https://hub.docker.com/r/edgyr/edgyr). The image is based on
-[NVIDIA L4T Base](https://ngc.nvidia.com/catalog/containers/nvidia:l4t-base).
+-   R 4.0.3 compiled from upstream source,
+
+-   RStudioⓇ Server 1.4.1103 compiled from upstream source,
+
+-   R package development tools:
+
+    -   [`devtools`](https://devtools.r-lib.org/),
+    -   [`tidyverse`](https://www.tidyverse.org/),
+    -   [`rmarkdown`](https://rmarkdown.rstudio.com/), [`bookdown`](https://bookdown.org/) and [`pkgdown`](https://pkgdown.r-lib.org/),
+    -   [`shinyⓇ`](https://shiny.rstudio.com/),
+    -   [`reticulate`](https://rstudio.github.io/reticulate/) Python interface,
+    -   [`odbc`](https://db.rstudio.com/getting-started/connect-to-database) database connectivity.
+
+-   the [Miniforge](https://github.com/conda-forge/miniforge) [conda-forge](https://conda-forge.org/) distribution,
+
+-   an optimized Python data science stack:
+
+    -   [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/)
+    -   the [`cupy`](https://cupy.dev/) CUDA-optimized version of `numpy`,
+    -   the [`cuSignal`](https://github.com/rapidsai/cusignal) CUDA-optimized digital signal processing library.
+
+`edgyR` is distributed via Docker image at [`edgyr`](https://hub.docker.com/r/edgyr/edgyr). The image is based on [NVIDIA L4T Base](https://ngc.nvidia.com/catalog/containers/nvidia:l4t-base).
 
 ## Licensing
-Like RStudio Server, `edgyR` is licensed via the
-[GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.en.html).
-The source resides on GitHub at <https://github.com/edgyR/edgyR-containers>. The
-book you're reading is also open source and resides at
-<https://github.com/edgyR/edgyR.github.io>.
+
+Like RStudio Server, `edgyR` is licensed via the [GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.en.html). The source resides on GitHub at <https://github.com/edgyR/edgyR-containers>. The book you're reading is also open source and resides at <https://github.com/edgyR/edgyR.github.io>.
+
+RStudioⓇ and ShinyⓇ are trademarks of RStudio PBC. NVIDIAⓇ and Jetson™ are trademarks of NVIDIA Inc.
+
+## Installers
+
+Once you run the `edgyr` Docker image and sign in to RStudio, you can install additional software on the image using the shell scripts in the `Installers` directory. As of release 0.7.5, these are
+
+-   audio.sh: installs the [ChucK](https://chuck.cs.princeton.edu/) and [CSound](https://csound.com/) audio synthesis languages and R packages for audio analysis and synthesis [@sueur2018sound].
+-   authoring.sh: installs additional packages for R Markdown authoring.
+-   bayes.sh: installs the packages used in [@mcelreath2020statistical].
+-   julia.sh: installs the Julia language globally and `CUDA.jl` for the `edgyr` user.
+-   test-julia.sh: tests a Julia install. This takes a long time.
+-   pocl.sh: [Portable Computing Language](http://portablecl.org/docs/html/). This implements OpenCL version 1.2 and includes a CUDA backend.
+-   pyarrow-cuda-git.sh: Creates a `conda` environment with [Apache Arrow](https://arrow.apache.org/) C++ libraries and the [PyArrow](https://arrow.apache.org/docs/python/) Python bindings. The CUDA options are supported, and the R `arrow` package is installed in the `edgyr` user R library.
+-   pytorch-1.7.sh: Creates a `virtualenv` environment with the NVIDIA CUDA version of PyTorch 1.7, and installs `rTorch` in the `edgyr` user R library.
+-   spatial.sh:installs R packages for geospatial data science. Most of them are documented in [Geocomputation with R](https://geocompr.robinlovelace.net/) [@lovelace2019geocomputation].
+-   tensorflow-1.sh: Creates a `virtualenv` environment with the NVIDIA CUDA version of TensorFlow 1.15, and installs `keras` in the `edgyr` user R library.
+-   tensorflow-2.sh: : Creates a `virtualenv` environment with the NVIDIA CUDA version of TensorFlow 2.3, and installs `keras` in the `edgyr` user R library.
 
 ## How is it pronounced?
 
 There are (at least) five options:
 
-1. ED-grrr
-2. ED-gyre
-3. EDGE-er
-4. Edgier
-5. Edgy R
+1.  ED-grrr
+2.  ED-gyre
+3.  EDGE-er
+4.  Edgier
+5.  Edgy R
 
-It is ***not*** pronounced like any brand of peanut butter. Otherwise, it's
-your choice!
+It is ***not*** pronounced like any brand of peanut butter. Otherwise, it's your choice!
+
+------------------------------------------------------------------------
+
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
+
+<a property="dct:title" rel="cc:attributionURL" href="https://edgyR.github.io">edgyR: NVIDIAⓇ Jetson™ Tools for R Developers</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://twitter.com/znmeb">M. Edward (Ed) Borasky</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/></a>
+
+</p>

@@ -1,6 +1,7 @@
 introduction
 overview
 licensing
+installers
 how-is-it-pronounced
 setting-up-the-jetson-nano
 what-to-buy
