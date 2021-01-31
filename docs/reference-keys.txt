@@ -1,13 +1,16 @@
 introduction
-overview
+goals
 licensing
-installers
 how-is-it-pronounced
+overview
+nvidia-hardware-and-software
+installers
+references
 setting-up-the-jetson-nano
 what-to-buy
 flashing-and-initialization
 setup-and-first-boot
-references
+references-1
 linux-for-tegra-l4t-first-steps
 what-is-l4t
 updating-the-operating-system
@@ -15,7 +18,7 @@ remote-access
 unminimize-man-sudo-and-all-that
 remote-desktop
 booting-to-a-linux-console
-references-1
+references-2
 running-an-edgyr-container
 getting-the-repository
 starting-the-edgyr-container
@@ -23,7 +26,7 @@ using-the-container
 browsing-to-the-rstudio-server
 exploring-the-container
 logging-in-to-the-command-line
-references-2
+references-3
 overview-of-software-on-the-image
 software-from-the-nvidia-l4t-ml-image
 operating-system-and-command-line
@@ -34,7 +37,7 @@ r-and-rstudio-from-source
 the-edgyr-user
 reticulate-virtualenv-virtualenvwrapper
 r-packages
-references-3
+references-4
 operations-and-persistence
 docker-operations
 pulling-the-image
@@ -42,7 +45,7 @@ running-the-image-in-a-container
 stopping-and-restarting-the-container
 git-and-github
 next-using-jupyterlab
-references-4
+references-5
 using-jupyterlab
 starting-jupyterlab
-references-5
+references-6
